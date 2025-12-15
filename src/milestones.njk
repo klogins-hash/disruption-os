@@ -8,7 +8,12 @@ title: Disruption OS - Milestones
   <p>Key iterations and breakthrough moments in the Disruption OS evolution</p>
 </div>
 
-{% set milestones = versions | jsFilter("item => item.is_milestone") %}
+{% set milestones = [] %}
+{% for version in versions %}
+  {% if version.is_milestone %}
+    {% set milestones = (milestones.push(version), milestones) %}
+  {% endif %}
+{% endfor %}
 
 {% if milestones.length === 0 %}
   <div class="empty-state">

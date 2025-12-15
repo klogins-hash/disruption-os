@@ -1,0 +1,46 @@
+---
+title: 'Version History'
+description: 'Complete timeline of all Disruption OS iterations'
+---
+
+## Timeline
+
+Track every iteration of the Disruption OS blueprint with full Git WORM storage.
+
+<Info>
+Each version is an immutable Git commit with rich metadata from PostgreSQL
+</Info>
+
+### How It Works
+
+<Steps>
+  <Step title="Edit Blueprint">
+    Make changes to `disruption-os-blueprint.md`
+  </Step>
+  <Step title="Git Commit">
+    Create immutable WORM snapshot
+  </Step>
+  <Step title="Add Metadata">
+    Run `npm run version:create` to add version labels, tags, milestones
+  </Step>
+  <Step title="Auto-Deploy">
+    Push to GitHub → Vercel auto-updates
+  </Step>
+</Steps>
+
+## Access the Timeline
+
+Visit the [Version Timeline](https://disruption-7ss9o9rry-kenneths-projects-6f206e36.vercel.app) to see all iterations.
+
+### API Access
+
+```bash
+# Get all versions
+curl https://disruption-7ss9o9rry-kenneths-projects-6f206e36.vercel.app/api/versions
+
+# Get latest version
+curl https://disruption-7ss9o9rry-kenneths-projects-6f206e36.vercel.app/api/versions/latest
+
+# Get milestones only
+curl https://disruption-7ss9o9rry-kenneths-projects-6f206e36.vercel.app/api/milestones
+```
