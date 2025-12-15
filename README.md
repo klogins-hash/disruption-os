@@ -38,10 +38,10 @@ A **Write-Once-Read-Many (WORM)** versioning and archival system for the Disrupt
 ## 📦 Tech Stack
 
 - **Backend:** Node.js + Express
-- **Database:** PostgreSQL (Railway)
+- **Database:** PostgreSQL (Supabase)
 - **Frontend:** 11ty (Static Site Generator)
 - **Version Control:** Git (WORM storage layer)
-- **Hosting:** Railway
+- **Hosting:** Railway, Vercel, or any Node.js host
 
 ## 🚀 Quick Start
 
@@ -51,36 +51,43 @@ A **Write-Once-Read-Many (WORM)** versioning and archival system for the Disrupt
 npm install
 ```
 
-### 2. Set Up Environment Variables
+### 2. Set Up Supabase Database
+
+1. Go to [supabase.com](https://supabase.com) and create a new project
+2. Wait for the database to initialize
+3. Go to **Settings** → **Database** → **Connection String**
+4. Copy the **URI** connection string
+
+### 3. Set Up Environment Variables
 
 ```bash
 cp .env.example .env
 ```
 
-Edit `.env` and add your Railway PostgreSQL connection string:
+Edit `.env` and add your Supabase PostgreSQL connection string:
 
 ```env
-DATABASE_URL=postgresql://user:password@host:port/database
+DATABASE_URL=postgresql://postgres:[YOUR-PASSWORD]@db.[YOUR-PROJECT-REF].supabase.co:5432/postgres
 PORT=3000
 NODE_ENV=development
 ```
 
-### 3. Run Database Migration
+### 4. Run Database Migration
 
 ```bash
 npm run db:migrate
 ```
 
-This creates the `versions` table in PostgreSQL.
+This creates the `versions` table in your Supabase PostgreSQL database.
 
-### 4. Make Your First Commit
+### 5. Make Your First Commit
 
 ```bash
 git add .
 git commit -m "Initial version of Disruption OS blueprint"
 ```
 
-### 5. Create Your First Version
+### 6. Create Your First Version
 
 ```bash
 npm run version:create
@@ -88,7 +95,7 @@ npm run version:create
 
 Follow the prompts to add metadata (version number, description, tags, milestone status).
 
-### 6. Build the Site
+### 7. Build the Site
 
 ```bash
 npm run build
@@ -96,7 +103,7 @@ npm run build
 
 This generates the static site in the `_site` directory.
 
-### 7. Start the Server
+### 8. Start the Server
 
 ```bash
 npm start
