@@ -1,0 +1,69 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Disruption OS",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.svg",
+  "colors": {
+    "primary": "#2563eb",
+    "light": "#60a5fa",
+    "dark": "#1e40af",
+    "anchors": {
+      "from": "#2563eb",
+      "to": "#1e40af"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/klogins-hash/disruption-os"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Version History",
+    "url": "/versions"
+  },
+  "navigation": [
+    {
+      "group": "Overview",
+      "pages": [
+        "introduction",
+        "architecture"
+      ]
+    },
+    {
+      "group": "Modules",
+      "pages": [
+        "modules/ventures",
+        "modules/defense",
+        "modules/org",
+        "modules/foresight"
+      ]
+    },
+    {
+      "group": "The Truth Engine",
+      "pages": [
+        "truth-engine/overview",
+        "truth-engine/moat-detector"
+      ]
+    },
+    {
+      "group": "Changelog",
+      "pages": [
+        "versions",
+        "milestones"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "github": "https://github.com/klogins-hash/disruption-os"
+  },
+  "api": {
+    "baseUrl": "http://localhost:3000/api",
+    "auth": {
+      "method": "bearer"
+    }
+  }
+}
