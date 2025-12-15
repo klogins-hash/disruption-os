@@ -4,10 +4,10 @@
   "description": "WORM-based versioning system for Disruption OS with 11ty static site generation",
   "main": "server.js",
   "scripts": {
-    "dev": "concurrently \"npm run dev:api\" \"npm run dev:11ty\"",
+    "dev": "concurrently \"npm run dev:api\" \"mintlify dev\"",
     "dev:api": "nodemon server.js",
     "dev:11ty": "eleventy --serve",
-    "build": "eleventy",
+    "build": "mintlify install",
     "start": "node server.js",
     "db:migrate": "node scripts/migrate.js",
     "version:create": "node scripts/create-version.js"
