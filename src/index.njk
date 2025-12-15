@@ -1,0 +1,60 @@
+---
+layout: base.njk
+title: Disruption OS - Version Timeline
+---
+
+<div class="page-header">
+  <h2>📚 Version Timeline</h2>
+  <p>Complete history of all iterations and changes to the Disruption OS blueprint</p>
+</div>
+
+{% if versions.length === 0 %}
+  <div class="empty-state">
+    <h3>No versions yet</h3>
+    <p>Run <code>npm run version:create</code> to create your first version after committing changes to git.</p>
+  </div>
+{% else %}
+  <div class="version-timeline">
+    {% for version in versions %}
+      <article class="version-card {% if version.is_milestone %}milestone{% endif %}">
+        <div class="version-header">
+          <div class="version-title">
+            <h3>
+              {% if version.is_milestone %}🚀{% endif %}
+              {{ version.version_number }}
+            </h3>
+            <span class="commit-hash">{{ version.commit_hash | shortHash }}</span>
+          </div>
+          <time class="version-date">{{ version.created_at | shortDate }}</time>
+        </div>
+
+        <p class="version-description">{{ version.description }}</p>
+
+        {% if version.tags and version.tags.length > 0 %}
+          <div class="tags">
+            {% for tag in version.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <div class="version-actions">
+          <a href="/version/{{ version.commit_hash }}" class="btn btn-primary">View Version</a>
+          {% if not loop.first %}
+            <a href="/compare/{{ versions[loop.index].commit_hash }}...{{ version.commit_hash }}" class="btn btn-secondary">View Changes</a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% endif %}
+
+<div class="cta-section">
+  <h3>Create a New Version</h3>
+  <ol>
+    <li>Make changes to <code>disruption-os-blueprint.md</code></li>
+    <li>Commit your changes: <code>git add . && git commit -m "Your message"</code></li>
+    <li>Create version metadata: <code>npm run version:create</code></li>
+    <li>Rebuild the site: <code>npm run build</code></li>
+  </ol>
+</div>

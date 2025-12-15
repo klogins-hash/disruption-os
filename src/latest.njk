@@ -1,0 +1,70 @@
+---
+layout: base.njk
+title: Disruption OS - Latest Version
+---
+
+<div class="page-header">
+  <h2>📄 Latest Version</h2>
+  <p>Most recent iteration of the Disruption OS blueprint</p>
+</div>
+
+{% set latestVersion = versions[0] %}
+
+{% if latestVersion %}
+  <article class="version-detail">
+    <div class="version-meta">
+      <div class="meta-item">
+        <strong>Version:</strong> {{ latestVersion.version_number }}
+        {% if latestVersion.is_milestone %}<span class="badge">🚀 Milestone</span>{% endif %}
+      </div>
+      <div class="meta-item">
+        <strong>Date:</strong> {{ latestVersion.created_at | formatDate }}
+      </div>
+      <div class="meta-item">
+        <strong>Commit:</strong> <code>{{ latestVersion.commit_hash | shortHash }}</code>
+      </div>
+      <div class="meta-item">
+        <strong>Author:</strong> {{ latestVersion.author }}
+      </div>
+    </div>
+
+    {% if latestVersion.description %}
+      <div class="version-description">
+        <h3>Description</h3>
+        <p>{{ latestVersion.description }}</p>
+      </div>
+    {% endif %}
+
+    {% if latestVersion.tags and latestVersion.tags.length > 0 %}
+      <div class="version-tags">
+        <h3>Tags</h3>
+        <div class="tags">
+          {% for tag in latestVersion.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="version-actions">
+      <button class="btn btn-primary" onclick="loadVersionContent('{{ latestVersion.commit_hash }}')">
+        View Blueprint Content
+      </button>
+      {% if versions.length > 1 %}
+        <a href="/compare/{{ versions[1].commit_hash }}...{{ latestVersion.commit_hash }}" class="btn btn-secondary">
+          Compare with Previous
+        </a>
+      {% endif %}
+    </div>
+
+    <div id="content-viewer" class="content-viewer" style="display: none;">
+      <h3>Blueprint Content</h3>
+      <div id="content-display" class="markdown-content"></div>
+    </div>
+  </article>
+{% else %}
+  <div class="empty-state">
+    <h3>No versions available</h3>
+    <p>Create your first version to get started!</p>
+  </div>
+{% endif %}

@@ -30,3 +30,22 @@ Temporary Items
 # Notes and scratch files
 scratch/
 notes/
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build output
+_site/
+dist/
+
+# Logs
+logs/
+*.log

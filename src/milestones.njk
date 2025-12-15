@@ -1,0 +1,39 @@
+---
+layout: base.njk
+title: Disruption OS - Milestones
+---
+
+<div class="page-header">
+  <h2>🚀 Milestones</h2>
+  <p>Key iterations and breakthrough moments in the Disruption OS evolution</p>
+</div>
+
+{% set milestones = versions | jsFilter("item => item.is_milestone") %}
+
+{% if milestones.length === 0 %}
+  <div class="empty-state">
+    <h3>No milestones yet</h3>
+    <p>Mark important versions as milestones when creating them with <code>npm run version:create</code></p>
+  </div>
+{% else %}
+  <div class="milestone-grid">
+    {% for milestone in milestones %}
+      <article class="milestone-card">
+        <div class="milestone-icon">🚀</div>
+        <h3>{{ milestone.version_number }}</h3>
+        <time>{{ milestone.created_at | formatDate }}</time>
+        <p class="milestone-description">{{ milestone.description }}</p>
+
+        {% if milestone.tags and milestone.tags.length > 0 %}
+          <div class="tags">
+            {% for tag in milestone.tags %}
+              <span class="tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <a href="/version/{{ milestone.commit_hash }}" class="btn btn-primary">View Details</a>
+      </article>
+    {% endfor %}
+  </div>
+{% endif %}
